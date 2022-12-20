@@ -1,0 +1,27 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Inspect Transaction</title>
+<link rel="stylesheet" href="/css/transactions.css" />
+</head>
+<body>
+
+	<h2 th:text="|Transaction ID: ${transaction.id} (${transaction.type == 'C' ? 'Credit' : 'Debit'})|"></h2>
+
+	<table>
+		<tr>
+			<th>Date:</th>
+			<td th:text="${#temporals.format(transaction.date,'dd-MM-yyyy HH:mm:ss')}">date</td>
+		</tr>
+		<tr>
+			<th>Amount:</th>
+			<td th:text="(${transaction.type} == 'C')? '-'+${transaction.amount}: ${transaction.amount}">amount</td>
+		</tr>
+		<tr>
+			<th>Description:</th>
+			<td th:text=${transaction.description}>description</td>
+		</tr>
+	</table>
+	<a href="/transactions"> Go Back</a>
+	
+</body>
+</html>
